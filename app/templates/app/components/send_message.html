@@ -1,7 +1,8 @@
 <turbo-frame id="send-message">
-     <form method="post" action="{% url 'send_message' room_id %}" data-turbo-frame="messages">
+     <form method="post" action="{% url 'message_create' pk=room.id %}" data-turbo-frame="messages">
         {% csrf_token %}
         {{ form.as_p }}
+        prueba
         <input type="submit" value="Send">
     </form>
 </turbo-frame>

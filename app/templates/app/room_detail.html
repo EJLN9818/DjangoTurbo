@@ -1,3 +1,5 @@
+{% load turbo_streams %}
+{% turbo_subscribe room %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -5,25 +7,17 @@
         <title>Room Detail</title>
     </head>
     <body>
-        {% load turbo_streams %}
-        {% turbo_subscribe room %}
-
         <a href="{% url 'room_list' %}">Home</a>
 
         <h1>{{ room.name }}</h1>
 
-        <ul id="messages">
-            {% for message in room.messages.all %}
-                {% include "chat/components/message.html" with message=message only %}
-            {% endfor %}
-        </ul>
         <turbo-frame id="message-list">
         <ul id="messages">
             {% for message in room.messages.all%}
-                {% include "chat/components/message.html"  with message=message only %}
+                {% include "app/components/message.html"  with message=message only %}
             {% endfor %}
         </ul>
         </turbo-frame>
-
+        <turbo-frame id="send-message" src="{% url 'message_create' room.id %}">{% include "app/components/send_message.html"%}</turbo-frame>
     </body>
 </html>

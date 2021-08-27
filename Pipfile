@@ -34,6 +34,7 @@ Django = "==3.2.6"
 Automat = "==20.2.0"
 pyOpenSSL = "==20.0.1"
 Twisted = {version = "==21.7.0", extras = ["tls"]}
+django-debug-toolbar = "==3.2.2"
 
 [dev-packages]
 django-debug-toolbar = "*"

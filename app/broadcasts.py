@@ -9,7 +9,7 @@ class MessageBroadcast(classes.ModelBroadcast):
     def on_save(self, message, created, *args, **kwargs):
         if created:
             message.room.turbo.render(
-                'chat/components/message.html',
+                'app/components/message.html',
                 {'message': message}
             ).append(id='messages')
             
