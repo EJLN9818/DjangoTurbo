@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Room Detail</title>
+    </head>
+    <body>
+        {% load turbo_streams %}
+        {% turbo_subscribe room %}
+
+        <a href="{% url 'room_list' %}">Home</a>
+
+        <h1>{{ room.name }}</h1>
+
+        <ul id="messages">
+            {% for message in room.messages.all %}
+                {% include "chat/components/message.html" with message=message only %}
+            {% endfor %}
+        </ul>
+        <turbo-frame id="message-list">
+        <ul id="messages">
+            {% for message in room.messages.all%}
+                {% include "chat/components/message.html"  with message=message only %}
+            {% endfor %}
+        </ul>
+        </turbo-frame>
+
+    </body>
+</html>
